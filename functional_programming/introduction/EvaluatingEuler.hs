@@ -4,6 +4,8 @@
 --            Solution by Lorin Lange             --
 ----------------------------------------------------
 
+module Main where
+
 import Control.Monad
 
 euler :: Double -> Double
