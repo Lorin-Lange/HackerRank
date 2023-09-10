@@ -26,8 +26,11 @@ parseStrings :: [String] -> [[(Int, Int)]] -> [[(Int, Int)]]
 parseStrings []  acc = acc
 parseStrings inp acc = 
     let n = read $ head inp :: Int
-        lst = map (\i -> let l = map read $ splitOn " " i in (head l, l !! 1)) (take n (tail inp))
+        lst = map (\i -> 
+            let l = map read $ splitOn " " i 
+            in (head l, l !! 1)) (take n (tail inp))
     in parseStrings (drop (n+1) inp) (acc ++ [lst])
 
 main :: IO()
-main = interact $ \inp -> concatMap (result . isFunction Map.empty) $ parseInput inp
+main = interact $ \inp -> 
+    concatMap (result . isFunction Map.empty) $ parseInput inp

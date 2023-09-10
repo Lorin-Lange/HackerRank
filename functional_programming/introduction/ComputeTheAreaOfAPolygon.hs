@@ -8,11 +8,11 @@ module Main where
 
 import Data.List.Split
 
-determinant :: (Int, Int) -> (Int, Int) -> Double
-determinant (x1, y1) (x2, y2) = fromIntegral $ x1 * y2 - x2 * y1
+determinant :: (Int, Int) -> (Int, Int) -> Int
+determinant (x1, y1) (x2, y2) = x1 * y2 - x2 * y1
 
 shoelaceFormula :: [(Int, Int)] -> Double
-shoelaceFormula lst = (sum $ zipWith determinant lst (tail lst ++ [head lst])) / 2
+shoelaceFormula lst = (fromIntegral $ sum $ zipWith determinant lst (tail lst ++ [head lst])) / 2
 
 parseInput :: String -> [(Int, Int)]
 parseInput inp = 
