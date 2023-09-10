@@ -4,8 +4,6 @@
 --            Solution by Lorin Lange             --
 ----------------------------------------------------
 
-module EvaluatingEuler where
-
 import Control.Monad
 
 euler :: Double -> Double
@@ -15,6 +13,6 @@ euler x = sum $ map (\i -> x ** (fromIntegral i) / (fromIntegral $ fac i)) [0..9
 main :: IO()
 main = do
     n <- readLn 
-    forM_ [1..n] $ \n_itr -> do
+    forM_ [1..n] $ \_ -> do
         x <- readLn
         print $ euler x
