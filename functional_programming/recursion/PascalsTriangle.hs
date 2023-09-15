@@ -4,6 +4,10 @@
 --            Solution by Lorin Lange             --
 ----------------------------------------------------
 
+module Main where
+
+import Data.List (intercalate, intersperse)
+
 pascal :: [[Int]]
 pascal = [1] : iterate pascalH [1, 1]
 
@@ -15,16 +19,8 @@ pH :: [Int] -> [Int]
 pH [x]        = [x]
 pH (x1:x2:xs) = (x1+x2) : pH (x2:xs)
 
-printLst :: [Int] -> String
-printLst []     = "\n"
-printLst (x:xs) = show x ++ " " ++ printLst xs
-
 printTriangle :: [[Int]] -> String
-printTriangle []     = ""
-printTriangle (x:xs) = printLst x ++ printTriangle xs
-
-applyCalc :: String -> String
-applyCalc str = printTriangle $ take (read str) pascal
+printTriangle = intercalate "\n" . map (concat . intersperse " " . map show)
 
 main :: IO()
-main = interact applyCalc
+main = interact $ \s -> printTriangle $ take (read s) pascal
