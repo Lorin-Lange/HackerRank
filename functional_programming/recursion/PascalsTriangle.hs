@@ -9,15 +9,10 @@ module Main where
 import Data.List (intercalate, intersperse)
 
 pascal :: [[Int]]
-pascal = [1] : iterate pascalH [1, 1]
-
-pascalH :: [Int] -> [Int]
-pascalH [x]        = [x]
-pascalH lst@(x:xs) = x : pH lst
-
-pH :: [Int] -> [Int]
-pH [x]        = [x]
-pH (x1:x2:xs) = (x1+x2) : pH (x2:xs)
+pascal = [1] : iterate (\l -> head l : pH l) [1, 1]
+    where pH :: [Int] -> [Int]
+          pH [x]        = [x]
+          pH (x1:x2:xs) = (x1+x2) : pH (x2:xs)
 
 printTriangle :: [[Int]] -> String
 printTriangle = intercalate "\n" . map (concat . intersperse " " . map show)
