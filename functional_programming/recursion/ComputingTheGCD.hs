@@ -11,9 +11,6 @@ gcd' n 0 = n
 gcd' n m = gcd' m $ n `mod` m
 
 main :: IO()
-main = do
-  input <- getLine
-  print . uncurry gcd' . listToTuple . convertToInt . words $ input
- where
-  listToTuple (x:xs:_) = (x,xs)
-  convertToInt = map (read :: String -> Int)
+main = interact $ \str ->
+  let inp = map read $ words str
+  in show $ gcd' (inp !! 0) $ inp !! 1
