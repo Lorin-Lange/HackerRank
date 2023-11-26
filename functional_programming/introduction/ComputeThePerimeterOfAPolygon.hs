@@ -15,9 +15,10 @@ perimeter :: [(Int, Int)] -> Double
 perimeter lst = sum $ zipWith distance lst (tail lst ++ [head lst])
 
 parseInput :: String -> [(Int, Int)]
-parseInput inp = 
-    let lst = tail $ lines inp
-    in map (\s -> let l = splitOn " " s in (read $ head l, read $ l !! 1)) lst
+parseInput inp =
+    map (\s -> let lst = splitOn " " s 
+               in (read $ head lst, read $ lst !! 1)) 
+    $ tail $ lines inp
 
 main :: IO()
 main = interact $ show . perimeter . parseInput
