@@ -23,7 +23,7 @@ insert x (Node lt v rt)
 
 preorder :: BTree a -> [a]
 preorder Nil            = []
-preorder (Node lt v rt) = [v] ++ preorder lt ++ preorder rt
+preorder (Node lt v rt) = v : preorder lt ++ preorder rt
 
 parseInput :: String -> [[Int]]
 parseInput = everySecond . tail . lines
