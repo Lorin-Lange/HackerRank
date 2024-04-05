@@ -17,8 +17,8 @@ makeBST = foldr insert Nil
 insert :: Ord a => a -> BTree a -> BTree a
 insert x Nil = Node Nil x Nil
 insert x (Node lt v rt)
-    | v == x = Node lt v rt
-    | v  < x = Node lt v (insert x rt)
+    | v == x = Node lt            v rt
+    | v  < x = Node lt            v (insert x rt)
     | v  > x = Node (insert x lt) v rt
 
 preorder :: BTree a -> [a]
@@ -32,7 +32,7 @@ parseInput = everySecond . tail . lines
 
 checkBST :: Ord a => [a] -> String
 checkBST lst | lst == (preorder . makeBST . reverse) lst = "YES"
-             | otherwise = "NO"
+             | otherwise                                 = "NO"
 
 main :: IO()
 main = interact $ \inp -> concat $ intersperse "\n" $ 
