@@ -1,10 +1,11 @@
 ----------------------------------------------------
 --                   HackerRank                   --
---         Tree: Height of a Binary Tree          --
+--            Tree: Inorder Traversal             --
 --            Solution by Lorin Lange             --
 ----------------------------------------------------
 
 import Data.List.Split (splitOn)
+import Data.List (intersperse)
 
 data BTree = Nil | Node BTree Int BTree
     deriving Show
@@ -18,9 +19,12 @@ insert (Node lt v rt) n
 parseTree :: String -> BTree
 parseTree s = foldl insert Nil $ map read $ splitOn " " $ (last . lines) s
 
-height :: BTree -> Int
-height Nil            = -1
-height (Node lt _ rt) = 1 + max (height lt) (height rt)
+inorder :: BTree -> [Int]
+inorder Nil            = []
+inorder (Node lt v rt) = inorder lt ++ [v] ++ inorder rt
+
+printLst :: [Int] -> String
+printLst lst = concat $ intersperse " " $ map show lst
 
 main :: IO()
-main = interact $ show . height . parseTree
+main = interact $ printLst . inorder . parseTree
