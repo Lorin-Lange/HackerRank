@@ -99,8 +99,7 @@ SinglyLinkedListNode* reverse(SinglyLinkedListNode* llist) {
     return prev;
 }
 
-int main()
-{
+int main() {
     FILE* fptr = fopen(getenv("OUTPUT_PATH"), "w");
 
     char* tests_endptr;
