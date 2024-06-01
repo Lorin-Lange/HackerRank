@@ -30,7 +30,7 @@ import System.IO.Unsafe
 --
 
 rotateLeft :: Int -> [a] -> [a]
-rotateLeft d l = Data.List.drop d l ++ Data.List.take d l
+rotateLeft = Data.List.drop <> Data.List.take
 
 lstrip = Data.Text.unpack . Data.Text.stripStart . Data.Text.pack
 rstrip = Data.Text.unpack . Data.Text.stripEnd . Data.Text.pack
